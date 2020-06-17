@@ -2,7 +2,7 @@
 function init() {
 
     // Fetch the JSON data.
-    d3.json("static/js/samples.json").then((importedData) => {
+    d3.json("samples.json").then((importedData) => {
         var data = importedData.samples[0];
         console.log(importedData)
 
