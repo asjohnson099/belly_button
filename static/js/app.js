@@ -31,12 +31,15 @@ function init() {
                 return `<option value="${index}">${value}</option>`;
               });
 
-        // create and display demographic metadata
+        // create and display demographic Metadata
         var metadata = importedData.metadata[0];
         buildTable(metadata);
 
-        // create and display data for bubble chart
+        // create and display data for Bubble chart
         bubbleChart(otunumbers, samples, otulabels);
+        
+        // create and display data for Gauge chart
+        gaugeChart(metadata);
 
         // create the trace for the bar chart
         var trace1 = {
@@ -94,6 +97,9 @@ function optionChanged(choice) {
 
         // Update bubble chart
         bubbleChart(otunumbers, samples, otulabels);
+                
+        // create and display data for Gauge chart
+        gaugeChart(metadata);
 
         // Update and restyle the existing plot with id "bar"
         Plotly.restyle("bar", "x", [reversed]);
@@ -107,10 +113,6 @@ function optionChanged(choice) {
 // Create a bubble chart to display sample data.
 
 function bubbleChart(x, y, text) {
-
-    console.log(x);
-    console.log(y);
-    console.log(text);
 
     var trace1 = {
         x: x,
@@ -165,6 +167,45 @@ function buildTable(meta) {
 
 };  // end of buildTable function ...
 
+
+// Create function for the gauge chart
+
+function gaugeChart(meta) {
+    var count = meta.wfreq;
+
+    var data = [
+        {
+          domain: { x: [0, 1], y: [0, 1] },
+          value: count,
+          title: { text: "Scrubs per Week" },
+          type: "indicator",
+          mode: "gauge+number",
+          gauge: {
+            axis: { range: [null, 9] },
+            steps: [
+              { range: [0, 4.5], color: "lightgray" },
+              { range: [4.5, 9], color: "lightgreen" }
+            ]
+          }
+        }
+      ];
+      
+      var layout = { width: 400, height: 300, margin: { t: 150, b: 0 }, 
+      font: {
+        family: 'Arial Black',
+        size: 14,
+        color: 'black'
+      },
+      title: {text: "Belly Button Washing Frequency",   
+      font: {
+        family: 'Arial Black',
+        size: 20,
+        color: '#7f7f7f'
+      }}
+      };
+
+      Plotly.newPlot('gauge', data, layout);
+}
 
 // Run the functions: Initial and then dropdown using selectIndex value for display.
 

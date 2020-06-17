@@ -7,6 +7,6 @@
 
 
 ## Andrea S Johnson
-### Butler University
-### Data Analytics Bootcamp
+#### Butler University
+#### Data Analytics Bootcamp
 ### Pandemic 2020
