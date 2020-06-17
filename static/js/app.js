@@ -121,7 +121,8 @@ function bubbleChart(x, y, text) {
         mode: 'markers',
         marker: {
           color: x,
-          size: y
+          size: y,
+          colorscale: "Earth"
         },
         type: 'scatter'
       };
